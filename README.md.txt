@@ -2,9 +2,9 @@
 
 <div align="center">
 
-### Premium Laravel Ecommerce Platform
+### Premium Full Stack Ecommerce Platform
 
-Modern full-stack ecommerce web application built using Laravel, Tailwind CSS and MySQL.
+Modern ecommerce web application built using Laravel, Tailwind CSS, Blade, and MySQL.
 
 ![Laravel](https://img.shields.io/badge/Laravel-10-red?style=for-the-badge&logo=laravel)
 ![PHP](https://img.shields.io/badge/PHP-8-blue?style=for-the-badge&logo=php)
@@ -18,20 +18,21 @@ Modern full-stack ecommerce web application built using Laravel, Tailwind CSS an
 
 # ✨ Overview
 
-Bulk Bazaar is a modern ecommerce platform developed using Laravel and Tailwind CSS.
+Bulk Bazaar is a modern ecommerce platform inspired by premium enterprise ecommerce systems.
 
-The project includes:
-- customer ecommerce experience
-- premium admin dashboard
-- product management
-- category management
-- shopping cart system
-- checkout workflow
-- order management
-- inventory handling
-- responsive modern UI
+The application includes:
+- Customer storefront
+- Product browsing
+- Category filtering
+- Shopping cart
+- Checkout system
+- Order management
+- Inventory tracking
+- Admin dashboard
+- Product/category CRUD
+- Responsive premium UI
 
-The application was designed with a premium dark-theme ecommerce interface inspired by enterprise ecommerce platforms.
+The project focuses on complete frontend + backend ecommerce workflow implementation using Laravel MVC architecture.
 
 ---
 
@@ -39,23 +40,23 @@ The application was designed with a premium dark-theme ecommerce interface inspi
 
 ## 👤 Customer Features
 
-- Homepage with hero section
+- Premium homepage UI
+- Hero slider section
 - Shop by Category section
 - Product listing page
-- Product detail page
+- Product details page
 - Search functionality
-- Category filtering
+- Category filters
 - Price sorting
-- Shopping cart system
+- Add to Cart system
 - Quantity management
-- Checkout flow
+- Checkout workflow
 - Order history page
 - Responsive navigation
-- Premium UI/UX
 
 ---
 
-## 🛠️ Admin Features
+## ⚙️ Admin Features
 
 - Admin dashboard
 - Product CRUD operations
@@ -63,8 +64,8 @@ The application was designed with a premium dark-theme ecommerce interface inspi
 - Order management
 - Order status updates
 - Inventory management
-- Sidebar-based admin panel
-- Backend-connected product management
+- Real-time backend synchronization
+- Responsive admin interface
 
 ---
 
@@ -73,13 +74,12 @@ The application was designed with a premium dark-theme ecommerce interface inspi
 | Technology | Usage |
 |------------|-------|
 | Laravel | Backend Framework |
-| PHP | Server-side Logic |
+| PHP | Server-side Development |
 | Blade | Frontend Templating |
 | Tailwind CSS | UI Styling |
-| Alpine.js | Interactivity |
 | MySQL | Database |
 | Git & GitHub | Version Control |
-| XAMPP | Development Environment |
+| XAMPP | Local Development |
 
 ---
 
@@ -97,50 +97,44 @@ The application was designed with a premium dark-theme ecommerce interface inspi
 
 ---
 
-## 📦 Product Details
-
-![Product Details](screenshots/product-details.png)
-
----
-
 ## 🛒 Shopping Cart
 
 ![Cart](screenshots/cart.png)
 
 ---
 
-## 📑 My Orders
+## 📦 Order Management
 
-![Orders](screenshots/orders.png)
-
----
-
-## ⚙️ Admin Products
-
-![Admin Products](screenshots/admin-products.png)
+![Orders](screenshots/sorted-orders.png)
 
 ---
 
-## 🗂️ Admin Categories
+## ⚙️ Admin Dashboard
 
-![Admin Categories](screenshots/admin-categories.png)
-
----
-
-## 📊 Admin Orders
-
-![Admin Orders](screenshots/admin-orders.png)
+![Admin Dashboard](screenshots/admin.png)
 
 ---
 
-# 🔄 Project Workflow
+## 🗂️ Category Management
+
+![Categories](screenshots/category.png)
+
+---
+
+## ✏️ Product Management
+
+![Products Admin](screenshots/edit-products.png)
+
+---
+
+# 🔄 Workflow
 
 ## Customer Flow
 
 1. Browse Products
-2. Filter/Search Products
+2. Search & Filter Products
 3. View Product Details
-4. Add to Cart
+4. Add Products to Cart
 5. Checkout
 6. View Orders
 
@@ -148,11 +142,24 @@ The application was designed with a premium dark-theme ecommerce interface inspi
 
 ## Admin Flow
 
-1. Manage Products
+1. Add/Edit/Delete Products
 2. Manage Categories
 3. Manage Orders
 4. Update Order Status
 5. Track Inventory
+
+---
+
+# 💡 Key Highlights
+
+- Full-stack ecommerce workflow
+- Modern responsive UI
+- Backend-connected dynamic system
+- Inventory reduction logic
+- User-specific order management
+- Role-based admin access
+- Professional admin dashboard
+- Enterprise-inspired design
 
 ---
 
@@ -166,31 +173,6 @@ database/
 public/
 screenshots/
 ```
-
----
-
-# 💡 Key Highlights
-
-- Fully functional ecommerce workflow
-- Dynamic backend integration
-- Responsive modern UI
-- Real-time inventory reduction
-- User-specific order management
-- Premium dashboard experience
-- Enterprise-inspired admin panel
-
----
-
-# 🔮 Future Improvements
-
-- Payment gateway integration
-- Email notifications
-- Wishlist system
-- Coupon system
-- Analytics dashboard
-- API integration
-- Cloud deployment
-- Invoice generation
 
 ---
 
@@ -234,15 +216,15 @@ php artisan serve
 
 ## Dhroov Singh
 
-Full-stack Laravel Ecommerce Project
+Full Stack Laravel Ecommerce Project
 
 ---
 
 # ⭐ Conclusion
 
-Bulk Bazaar demonstrates a complete ecommerce ecosystem with frontend and backend integration, premium UI/UX, dynamic product management, and responsive modern design.
+Bulk Bazaar demonstrates a complete ecommerce ecosystem with premium frontend design, backend integration, dynamic CRUD operations, order workflows, and responsive admin management.
 
-The project reflects practical implementation of Laravel MVC architecture, CRUD operations, ecommerce workflows, and admin management systems.
+The project reflects practical implementation of Laravel MVC architecture and modern ecommerce application development.
 
 ---
 
