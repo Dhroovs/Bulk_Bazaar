@@ -284,7 +284,7 @@ php artisan serve
 
 ## Dhroov Singh
 
-Full Stack Laravel Ecommerce Project
+Full Stack Laravel Ecommerce Project.
 
 ---
 
