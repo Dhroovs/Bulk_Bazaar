@@ -227,7 +227,7 @@ The project focuses on complete frontend + backend ecommerce workflow implementa
 - User-specific order management
 - Role-based admin access
 - Professional admin dashboard
-- Enterprise-inspired design
+- Enterprise-inspired design.
 
 ---
 
