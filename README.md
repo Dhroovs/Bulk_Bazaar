@@ -211,7 +211,7 @@ The project focuses on complete frontend + backend ecommerce workflow implementa
 ## Admin Flow
 
 1. Add/Edit/Delete Products
-2. Manage Categories
+2. Manage Categories.
 3. Manage Orders
 4. Update Order Status
 5. Track Inventory
