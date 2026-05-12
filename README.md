@@ -202,7 +202,7 @@ The project focuses on complete frontend + backend ecommerce workflow implementa
 1. Browse Products
 2. Search & Filter Products
 3. View Product Details
-4. Add Products to Cart
+4. Add Products to Cart.
 5. Checkout
 6. View Orders
 
