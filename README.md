@@ -84,7 +84,7 @@ Modern ecommerce web application built using Laravel, Tailwind CSS, Blade, and M
 
 ---
 
-# ✨ Overview
+# ✨ Overview:
 
 Bulk Bazaar is a modern ecommerce platform inspired by premium enterprise ecommerce systems.
 
