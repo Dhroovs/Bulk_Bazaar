@@ -218,7 +218,7 @@ The project focuses on complete frontend + backend ecommerce workflow implementa
 
 ---
 
-# 💡 Key Highlights
+# 💡 Key Highlights:
 
 - Full-stack ecommerce workflow.
 - Modern responsive UI
