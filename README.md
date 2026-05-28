@@ -137,7 +137,7 @@ The project focuses on complete frontend + backend ecommerce workflow implementa
 
 ---
 
-# 🧰 Tech Stack
+# 🧰 Tech Stack:
 
 | Technology | Usage |
 |------------|-------|
