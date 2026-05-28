@@ -106,7 +106,7 @@ The project focuses on complete frontend + backend ecommerce workflow implementa
 
 # 🚀 Features
 
-## 👤 Customer Features
+## 👤 Customer Features:
 
 - Premium homepage UI
 - Hero slider section
