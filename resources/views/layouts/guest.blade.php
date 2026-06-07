@@ -9,6 +9,13 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script>
+            if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+                document.documentElement.classList.add('light');
+            } else {
+                document.documentElement.classList.remove('light');
+            }
+        </script>
     </head>
     <body class="bg-bgDark text-textPrimary font-sans antialiased min-h-screen flex flex-col justify-center items-center py-6 px-4">
         

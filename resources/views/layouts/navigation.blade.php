@@ -30,6 +30,14 @@
 
         <!-- RIGHT: Cart & User Profile -->
         <div class="flex items-center gap-3">
+            <!-- Theme Toggle Button -->
+            <button onclick="toggleTheme()" 
+                    class="w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-white transition-smooth hover:border-brandAccent/50 hover:bg-white/10"
+                    title="Toggle Light/Dark Theme">
+                <span class="dark-icon text-sm">🌙</span>
+                <span class="light-icon text-sm">☀️</span>
+            </button>
+
             <!-- Shopping Cart -->
             <a href="/cart" class="relative w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-white transition-smooth hover:border-brandAccent/50 hover:bg-white/10">
                 🛒

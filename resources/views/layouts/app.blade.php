@@ -6,6 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bulk Bazaar - Premium Marketplace</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script>
+        // Init theme immediately to prevent flashing
+        if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            document.documentElement.classList.add('light');
+        } else {
+            document.documentElement.classList.remove('light');
+        }
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('light')) {
+                document.documentElement.classList.remove('light');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.classList.add('light');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 </head>
 
 <body class="bg-bgDark text-textPrimary min-h-screen flex flex-col font-sans aurora-radial-glow relative overflow-x-hidden">
