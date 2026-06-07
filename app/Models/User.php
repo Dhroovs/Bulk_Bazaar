@@ -41,4 +41,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function vendorProfile()
+    {
+        return $this->hasOne(VendorProfile::class);
+    }
+
+    public function isVendor()
+    {
+        return $this->vendorProfile()->exists();
+    }
+
+    public function isApprovedVendor()
+    {
+        $profile = $this->vendorProfile;
+        return $profile && $profile->status === 'approved';
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'vendor_id');
+    }
 }

@@ -56,8 +56,25 @@ foreach ($cart as $id => $item) {
         if ($product) {
             $product->stock -= $item['quantity'];
             $product->save();
+
+            // Trigger critical inventory warning
+            if ($product->stock <= 5) {
+                if ($product->vendor_id) {
+                    $vendor = \App\Models\User::find($product->vendor_id);
+                    if ($vendor) {
+                        $vendor->notify(new \App\Notifications\LowStockNotification($product));
+                    }
+                }
+                $admins = \App\Models\User::where('is_admin', true)->get();
+                foreach ($admins as $admin) {
+                    $admin->notify(new \App\Notifications\LowStockNotification($product));
+                }
+            }
         }
     }
+
+    // Send order confirmation database alert
+    auth()->user()->notify(new \App\Notifications\OrderPlacedNotification($order));
 
     // CLEAR CART
     session()->forget('cart');
@@ -86,7 +103,7 @@ foreach ($cart as $id => $item) {
             return "Unauthorized ❌";
         }
 
-        if ($order->status != 'paid') {
+        if ($order->status != 'pending') {
             return "Cannot cancel this order ❌";
         }
 

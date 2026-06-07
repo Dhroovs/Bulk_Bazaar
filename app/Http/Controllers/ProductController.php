@@ -13,29 +13,30 @@ class ProductController extends Controller
     {
         $query = Product::with('category');
 
-        // SEARCH
+        // SEARCH (Name, Brand, Tags)
         if ($request->search) {
-
-            $query->where('name', 'LIKE', '%' . $request->search . '%');
+            $query->where(function($q) use ($request) {
+                $q->where('name', 'LIKE', '%' . $request->search . '%')
+                  ->orWhere('brand', 'LIKE', '%' . $request->search . '%')
+                  ->orWhere('tags', 'LIKE', '%' . $request->search . '%');
+            });
         }
 
         // CATEGORY FILTER
         if ($request->category) {
-
             $query->where('category_id', $request->category);
         }
 
         // SORTING
         if ($request->sort == 'low-high') {
-
             $query->orderBy('price', 'ASC');
-
         } elseif ($request->sort == 'high-low') {
-
             $query->orderBy('price', 'DESC');
-
+        } elseif ($request->sort == 'popularity') {
+            $query->orderBy('stock', 'ASC'); // lower stock means more items purchased
+        } elseif ($request->sort == 'newest') {
+            $query->latest();
         } else {
-
             $query->latest();
         }
 

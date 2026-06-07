@@ -12,6 +12,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\Admin\VendorController as AdminVendorController;
+use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
+use App\Http\Controllers\NotificationController;
 
 
 /*
@@ -108,6 +114,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/checkout', [OrderController::class, 'checkout']);
 
     Route::get('/my-orders', [OrderController::class, 'myOrders']);
+
+    Route::get('/order/cancel/{id}', [OrderController::class, 'cancel']);
 });
 
 /*
@@ -163,4 +171,90 @@ Route::get('/admin/categories/delete/{id}', [AdminCategoryController::class, 'de
     Route::get('/admin/orders', [AdminOrderController::class, 'index']);
 
     Route::get('/admin/orders/{id}/{status}', [AdminOrderController::class, 'updateStatus']);
+});
+
+/*
+|--------------------------------------------------------------------------
+| VENDOR & MARKETPLACE SYSTEM ROUTES
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/vendor/register', [VendorController::class, 'create']);
+    Route::post('/vendor/register', [VendorController::class, 'store']);
+});
+
+Route::middleware(['auth', 'is_approved_vendor'])->group(function () {
+    Route::get('/vendor/dashboard', [VendorController::class, 'dashboard']);
+    Route::get('/vendor/products', [VendorController::class, 'products']);
+    Route::get('/vendor/products/create', [VendorController::class, 'createProduct']);
+    Route::post('/vendor/products/store', [VendorController::class, 'storeProduct']);
+    Route::get('/vendor/products/edit/{id}', [VendorController::class, 'editProduct']);
+    Route::post('/vendor/products/update/{id}', [VendorController::class, 'updateProduct']);
+    Route::get('/vendor/products/delete/{id}', [VendorController::class, 'deleteProduct']);
+    Route::get('/vendor/orders', [VendorController::class, 'orders']);
+});
+
+/*
+|--------------------------------------------------------------------------
+| ADMIN VENDOR & ANALYTICS EXTENSIONS
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/admin/vendors', [AdminVendorController::class, 'index']);
+    Route::post('/admin/vendors/{id}/status', [AdminVendorController::class, 'updateStatus']);
+    Route::get('/admin/analytics', [AnalyticsController::class, 'adminIndex']);
+    Route::get('/admin/analytics/export/{format}', [AnalyticsController::class, 'adminExport']);
+});
+
+/*
+|--------------------------------------------------------------------------
+| REVIEWS & RATINGS ROUTES
+|--------------------------------------------------------------------------
+*/
+
+Route::post('/product/{id}/review', [ReviewController::class, 'store'])->middleware('auth');
+
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/admin/reviews', [AdminReviewController::class, 'index']);
+    Route::post('/admin/reviews/{id}/status', [AdminReviewController::class, 'updateStatus']);
+});
+
+/*
+|--------------------------------------------------------------------------
+| NOTIFICATIONS SYSTEM ROUTES
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/notifications/read-all', [NotificationController::class, 'readAll']);
+    Route::get('/notifications/{id}/read', [NotificationController::class, 'read']);
+});
+
+Route::get('/dev/switch/{role}', function ($role) {
+    auth()->logout();
+    $email = $role === 'admin' ? 'admin@bulkbazaar.com' : ($role === 'vendor' ? 'vendor@bulkbazaar.com' : 'customer@bulkbazaar.com');
+    $user = \App\Models\User::where('email', $email)->first();
+    if (!$user && $role === 'vendor') {
+        $user = \App\Models\User::create([
+            'name' => 'Vendor User',
+            'email' => 'vendor@bulkbazaar.com',
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            'is_admin' => false,
+        ]);
+        \App\Models\VendorProfile::create([
+            'user_id' => $user->id,
+            'store_name' => 'Apex Digital Solutions',
+            'store_description' => 'Premium next-gen technology and digital items.',
+            'status' => 'approved',
+            'commission_rate' => 10.00,
+            'earnings' => 45000.00
+        ]);
+    }
+    if ($user) {
+        auth()->login($user);
+        return redirect('/dashboard')->with('success', 'Logged in as ' . ucfirst($role) . ' (Dev Switcher)');
+    }
+    return redirect('/')->with('error', 'User not found');
 });

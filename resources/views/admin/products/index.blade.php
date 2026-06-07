@@ -1,374 +1,149 @@
 <x-app-layout>
 
-<div class="bg-[#0b1120] min-h-screen text-white">
+<div class="space-y-10">
 
-    <!-- TOP -->
-    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-10">
-
+    <!-- HEADER -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-
-            <h1 class="text-5xl font-black mb-3">
-                Products
-            </h1>
-
-            <p class="text-gray-400 text-lg">
-                Manage all products from your ecommerce platform.
-            </p>
-
+            <h1 class="text-2xl font-black text-white">Manage Products</h1>
+            <p class="text-xs text-textMuted font-medium font-sans">Total storefront inventory control panel</p>
         </div>
-
-        <!-- ACTIONS -->
-        <div class="flex gap-4">
-
-            <a href="/admin/categories"
-               class="bg-[#172033]
-                      hover:bg-[#22304d]
-                      px-6 py-4 rounded-2xl
-                      font-bold transition duration-300">
-
-                Categories
-
+        <div class="flex gap-2">
+            <a href="/admin/categories" class="bg-cardGlass hover:bg-cardBorder border border-cardBorder text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-smooth btn-micro-anim">
+                📁 Categories
             </a>
-
-            <a href="/admin/products/create"
-               class="bg-blue-500 hover:bg-blue-600
-                      px-8 py-4 rounded-2xl
-                      font-bold text-lg
-                      transition duration-300
-                      hover:scale-105">
-
+            <a href="/admin/products/create" class="bg-brandAccent hover:bg-brandAccentHover text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-smooth btn-micro-anim shadow-lg shadow-brandAccent/25">
                 + Add Product
-
             </a>
-
         </div>
-
     </div>
 
-    <!-- STATS -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-
-        <!-- TOTAL -->
-        <div class="bg-[#172033]
-                    border border-gray-800
-                    rounded-3xl p-8">
-
-            <div class="flex items-center justify-between">
-
-                <div>
-
-                    <p class="text-gray-400 mb-3">
-                        Total Products
-                    </p>
-
-                    <h2 class="text-5xl font-black text-blue-400">
-
-                        {{ $products->count() }}
-
-                    </h2>
-
-                </div>
-
-                <div class="text-6xl">
-                    📦
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- STOCK -->
-        <div class="bg-[#172033]
-                    border border-gray-800
-                    rounded-3xl p-8">
-
-            <div class="flex items-center justify-between">
-
-                <div>
-
-                    <p class="text-gray-400 mb-3">
-                        In Stock
-                    </p>
-
-                    <h2 class="text-5xl font-black text-green-400">
-
-                        {{ $products->where('stock', '>', 0)->count() }}
-
-                    </h2>
-
-                </div>
-
-                <div class="text-6xl">
-                    ✅
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- OUT -->
-        <div class="bg-[#172033]
-                    border border-gray-800
-                    rounded-3xl p-8">
-
-            <div class="flex items-center justify-between">
-
-                <div>
-
-                    <p class="text-gray-400 mb-3">
-                        Out of Stock
-                    </p>
-
-                    <h2 class="text-5xl font-black text-red-400">
-
-                        {{ $products->where('stock', '<=', 0)->count() }}
-
-                    </h2>
-
-                </div>
-
-                <div class="text-6xl">
-                    ⚠️
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- TABLE -->
-    <div class="bg-[#172033]
-                border border-gray-800
-                rounded-[35px]
-                overflow-hidden shadow-2xl">
-
-        <!-- HEADER -->
-        <div class="flex items-center justify-between
-                    px-8 py-6 border-b border-gray-800">
-
+    <!-- STATS CARDS -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card p-6 border border-cardBorder flex items-center justify-between">
             <div>
-
-                <h2 class="text-3xl font-black mb-2">
-                    All Products
-                </h2>
-
-                <p class="text-gray-400">
-                    View and manage all products.
-                </p>
-
+                <span class="text-xs text-textMuted block mb-1 font-semibold">Total Catalog Items</span>
+                <span class="text-3xl font-black text-white tabular-nums">{{ $products->count() }}</span>
             </div>
+            <span class="text-3xl">📦</span>
+        </div>
+        <div class="glass-card p-6 border border-cardBorder flex items-center justify-between">
+            <div>
+                <span class="text-xs text-textMuted block mb-1 font-semibold">In Stock Items</span>
+                <span class="text-3xl font-black text-brandGreen tabular-nums">{{ $products->where('stock', '>', 0)->count() }}</span>
+            </div>
+            <span class="text-3xl">✅</span>
+        </div>
+        <div class="glass-card p-6 border border-cardBorder flex items-center justify-between">
+            <div>
+                <span class="text-xs text-textMuted block mb-1 font-semibold">Out of Stock Items</span>
+                <span class="text-3xl font-black text-brandRed tabular-nums">{{ $products->where('stock', '<=', 0)->count() }}</span>
+            </div>
+            <span class="text-3xl">⚠️</span>
+        </div>
+    </div>
 
+    <!-- PRODUCTS TABLE -->
+    <div class="glass-card border border-cardBorder overflow-hidden">
+        
+        <div class="p-6 border-b border-cardBorder bg-bgDarker">
+            <h3 class="font-bold text-sm text-white">All Active Products</h3>
+            <p class="text-[10px] text-textMuted">Perform updates, deletions, and inventory level adjustments</p>
         </div>
 
-        <!-- TABLE -->
         <div class="overflow-x-auto">
-
-            <table class="w-full">
-
-                <thead class="bg-[#1b263b]">
-
-                    <tr>
-
-                        <th class="text-left p-6 text-gray-300 font-bold">
-                            Product
-                        </th>
-
-                        <th class="text-left p-6 text-gray-300 font-bold">
-                            Category
-                        </th>
-
-                        <th class="text-left p-6 text-gray-300 font-bold">
-                            Price
-                        </th>
-
-                        <th class="text-left p-6 text-gray-300 font-bold">
-                            Stock
-                        </th>
-
-                        <th class="text-left p-6 text-gray-300 font-bold">
-                            Status
-                        </th>
-
-                        <th class="text-left p-6 text-gray-300 font-bold">
-                            Actions
-                        </th>
-
+            <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                    <tr class="border-b border-cardBorder bg-bgDarker text-textMuted font-bold">
+                        <th class="p-4">Product Info</th>
+                        <th class="p-4">SKU / Brand</th>
+                        <th class="p-4">Category</th>
+                        <th class="p-4">Price / Promo</th>
+                        <th class="p-4">Stock</th>
+                        <th class="p-4">Status</th>
+                        <th class="p-4 text-right">Actions</th>
                     </tr>
-
                 </thead>
-
-                <tbody>
-
-                    @foreach($products as $product)
-
-                        <tr class="border-b border-gray-800
-                                   hover:bg-[#1a2437]
-                                   transition duration-300">
-
-                            <!-- PRODUCT -->
-                            <td class="p-6">
-
-                                <div class="flex items-center gap-5">
-
-                                    <!-- ICON -->
-                                    <div class="w-20 h-20 rounded-2xl
-                                                bg-[#1e293b]
-                                                flex items-center justify-center
-                                                text-4xl">
-
-                                        @if($product->category)
-
-                                            @if(strtolower($product->category->name) == 'electronics')
-                                                📱
-
-                                            @elseif(strtolower($product->category->name) == 'fashion')
-                                                👕
-
-                                            @elseif(strtolower($product->category->name) == 'books')
-                                                📚
-
-                                            @elseif(strtolower($product->category->name) == 'sports')
-                                                ⚽
-
-                                            @else
-                                                📦
-                                            @endif
-
+                <tbody class="divide-y divide-cardBorder/50">
+                    @forelse($products as $product)
+                        <tr class="hover:bg-white/5 transition-smooth">
+                            
+                            <!-- Product Name & ID -->
+                            <td class="p-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-bgDarker rounded-lg border border-cardBorder flex items-center justify-center text-xl shrink-0 select-none">
+                                        @if($product->image)
+                                            <img src="/products/{{ $product->image }}" alt="" class="w-full h-full object-cover rounded-lg">
                                         @else
-
                                             📦
-
                                         @endif
-
                                     </div>
-
-                                    <!-- INFO -->
                                     <div>
-
-                                        <h3 class="text-xl font-bold mb-2">
-
-                                            {{ $product->name }}
-
-                                        </h3>
-
-                                        <p class="text-gray-400 text-sm">
-
-                                            Product ID:
-                                            #{{ $product->id }}
-
-                                        </p>
-
+                                        <h4 class="font-bold text-xs text-white">{{ $product->name }}</h4>
+                                        <span class="text-[9px] text-textMuted block">ID: #{{ $product->id }}</span>
                                     </div>
-
                                 </div>
-
                             </td>
 
-                            <!-- CATEGORY -->
-                            <td class="p-6">
+                            <!-- SKU & Brand -->
+                            <td class="p-4">
+                                <span class="font-mono text-white block">{{ $product->sku ?? 'N/A' }}</span>
+                                <span class="text-[10px] text-textMuted block">{{ $product->brand ?? 'N/A' }}</span>
+                            </td>
 
-                                <span class="bg-blue-500/20
-                                             text-blue-400
-                                             px-4 py-2 rounded-full
-                                             text-sm font-semibold">
-
-                                    {{ $product->category->name ?? 'Category' }}
-
+                            <!-- Category -->
+                            <td class="p-4">
+                                <span class="bg-brandAccent/10 border border-brandAccent/25 text-brandAccent px-2.5 py-0.5 rounded-full text-[10px] font-semibold">
+                                    {{ $product->category->name ?? 'Uncategorized' }}
                                 </span>
-
                             </td>
 
-                            <!-- PRICE -->
-                            <td class="p-6">
-
-                                <h3 class="text-2xl font-black text-blue-400">
-
-                                    ₹{{ $product->price }}
-
-                                </h3>
-
-                            </td>
-
-                            <!-- STOCK -->
-                            <td class="p-6">
-
-                                <h3 class="text-xl font-bold">
-
-                                    {{ $product->stock }}
-
-                                </h3>
-
-                            </td>
-
-                            <!-- STATUS -->
-                            <td class="p-6">
-
-                                @if($product->stock > 0)
-
-                                    <span class="bg-green-500/20
-                                                 text-green-400
-                                                 px-4 py-2 rounded-full
-                                                 text-sm font-bold">
-
-                                        In Stock
-
-                                    </span>
-
+                            <!-- Prices -->
+                            <td class="p-4">
+                                @if($product->discount_price)
+                                    <span class="text-xs font-bold text-brandGreen block tabular-nums">₹{{ number_format($product->discount_price, 2) }}</span>
+                                    <span class="text-[10px] text-textMuted line-through block tabular-nums">₹{{ number_format($product->price, 2) }}</span>
                                 @else
-
-                                    <span class="bg-red-500/20
-                                                 text-red-400
-                                                 px-4 py-2 rounded-full
-                                                 text-sm font-bold">
-
-                                        Out of Stock
-
-                                    </span>
-
+                                    <span class="text-xs font-bold text-white block tabular-nums">₹{{ number_format($product->price, 2) }}</span>
                                 @endif
-
                             </td>
 
-                            <!-- ACTIONS -->
-                            <td class="p-6">
+                            <!-- Stock -->
+                            <td class="p-4 font-bold text-white tabular-nums">{{ $product->stock }}</td>
 
-                                <div class="flex gap-3">
+                            <!-- Status -->
+                            <td class="p-4">
+                                @if($product->status == 'active' && $product->stock > 0)
+                                    <span class="bg-brandGreen/10 border border-brandGreen/25 text-brandGreen px-2.5 py-0.5 rounded-full text-[9px] font-bold">Active</span>
+                                @elseif($product->status == 'inactive')
+                                    <span class="bg-cardBorder text-textMuted px-2.5 py-0.5 rounded-full text-[9px] font-bold">Inactive</span>
+                                @else
+                                    <span class="bg-brandRed/10 border border-brandRed/25 text-brandRed px-2.5 py-0.5 rounded-full text-[9px] font-bold">Stock Out</span>
+                                @endif
+                            </td>
 
-                                    <!-- EDIT -->
-                                    <a href="/admin/products/edit/{{ $product->id }}"
-                                       class="bg-yellow-500 hover:bg-yellow-600
-                                              text-black px-5 py-2 rounded-xl
-                                              font-bold transition duration-300">
-
+                            <!-- Actions -->
+                            <td class="p-4 text-right">
+                                <div class="flex justify-end gap-2">
+                                    <a href="/admin/products/edit/{{ $product->id }}" class="bg-brandAccent/15 hover:bg-brandAccent text-brandAccent hover:text-white px-3.5 py-1.5 rounded-lg text-[10px] font-bold transition-smooth btn-micro-anim">
                                         Edit
-
                                     </a>
-
-                                    <!-- DELETE -->
-                                    <a href="/admin/products/delete/{{ $product->id }}"
-                                       class="bg-red-500 hover:bg-red-600
-                                              text-white px-5 py-2 rounded-xl
-                                              font-bold transition duration-300">
-
+                                    <a href="/admin/products/delete/{{ $product->id }}" class="bg-brandRed/15 hover:bg-brandRed text-brandRed hover:text-white px-3.5 py-1.5 rounded-lg text-[10px] font-bold transition-smooth btn-micro-anim">
                                         Delete
-
                                     </a>
-
                                 </div>
-
                             </td>
 
                         </tr>
-
-                    @endforeach
-
+                    @empty
+                        <tr>
+                            <td colspan="7" class="p-8 text-center text-textMuted">No products found. Add a product to get started.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
-
             </table>
-
         </div>
-
+        
     </div>
 
 </div>

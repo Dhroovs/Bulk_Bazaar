@@ -26,11 +26,26 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:categories'
+            'name' => 'required|unique:categories|max:255',
+            'description' => 'nullable',
+            'status' => 'required|in:active,inactive',
+            'image' => 'nullable|image|max:2048',
         ]);
 
+        $imageName = null;
+
+        // Image upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('categories'), $imageName);
+        }
+
         Category::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'description' => $request->description,
+            'status' => $request->status,
+            'image' => $imageName,
         ]);
 
         return redirect('/admin/categories')
@@ -51,11 +66,26 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|unique:categories,name,' . $id
+            'name' => 'required|max:255|unique:categories,name,' . $id,
+            'description' => 'nullable',
+            'status' => 'required|in:active,inactive',
+            'image' => 'nullable|image|max:2048',
         ]);
 
+        $imageName = $category->image;
+
+        // Image upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('categories'), $imageName);
+        }
+
         $category->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'description' => $request->description,
+            'status' => $request->status,
+            'image' => $imageName,
         ]);
 
         return redirect('/admin/categories')

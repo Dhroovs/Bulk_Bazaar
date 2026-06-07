@@ -30,9 +30,15 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'price' => 'required',
-            'stock' => 'required',
-            'category_id' => 'required',
+            'price' => 'required|numeric',
+            'stock' => 'required|integer',
+            'category_id' => 'required|exists:categories,id',
+            'sku' => 'nullable',
+            'brand' => 'nullable',
+            'discount_price' => 'nullable|numeric',
+            'status' => 'required|in:active,inactive',
+            'tags' => 'nullable',
+            'specifications' => 'nullable',
             'image' => 'nullable|image',
         ]);
 
@@ -53,6 +59,12 @@ class ProductController extends Controller
             'price' => $request->price,
             'stock' => $request->stock,
             'category_id' => $request->category_id,
+            'sku' => $request->sku,
+            'brand' => $request->brand,
+            'discount_price' => $request->discount_price,
+            'status' => $request->status,
+            'tags' => $request->tags,
+            'specifications' => $request->specifications,
             'image' => $imageName,
         ]);
 
@@ -77,9 +89,15 @@ class ProductController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'price' => 'required',
-            'stock' => 'required',
-            'category_id' => 'required',
+            'price' => 'required|numeric',
+            'stock' => 'required|integer',
+            'category_id' => 'required|exists:categories,id',
+            'sku' => 'nullable',
+            'brand' => 'nullable',
+            'discount_price' => 'nullable|numeric',
+            'status' => 'required|in:active,inactive',
+            'tags' => 'nullable',
+            'specifications' => 'nullable',
             'image' => 'nullable|image',
         ]);
 
@@ -100,6 +118,12 @@ class ProductController extends Controller
             'price' => $request->price,
             'stock' => $request->stock,
             'category_id' => $request->category_id,
+            'sku' => $request->sku,
+            'brand' => $request->brand,
+            'discount_price' => $request->discount_price,
+            'status' => $request->status,
+            'tags' => $request->tags,
+            'specifications' => $request->specifications,
             'image' => $imageName,
         ]);
 

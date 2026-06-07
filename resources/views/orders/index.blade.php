@@ -1,407 +1,222 @@
 <x-app-layout>
 
-<div class="bg-[#0b1120] min-h-screen text-white py-10">
+<div class="space-y-10 relative">
 
-    <div class="max-w-7xl mx-auto px-6">
-
-    @if(session('success'))
-
-        <div class="bg-green-500/20
-                    border border-green-500
-                    text-green-400
-                    px-6 py-4 rounded-2xl
-                    mb-8 font-semibold">
-
-            {{ session('success') }}
-
+    <!-- HEADER -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 select-none relative z-10">
+        <div>
+            <h1 class="text-2xl font-black text-white tracking-tight">Fulfillment Journeys</h1>
+            <p class="text-xs text-textMuted font-medium">Track your active shipments and review past commerce logs</p>
         </div>
-
-    @endif
-
-        <!-- HEADER -->
-        <div class="flex flex-col lg:flex-row
-                    lg:items-center
-                    lg:justify-between
-                    gap-6 mb-10">
-
-            <div>
-
-                <h1 class="text-5xl font-black mb-4">
-                    My Orders
-                </h1>
-
-                <p class="text-gray-400 text-lg">
-                    Track and manage all your purchases from Bulk Bazaar.
-                </p>
-
-            </div>
-
-            <a href="/products"
-               class="bg-blue-500 hover:bg-blue-600
-                      px-8 py-4 rounded-2xl
-                      font-bold text-lg
-                      transition duration-300
-                      hover:scale-105 w-fit">
-
-                Continue Shopping →
-
-            </a>
-
-        </div>
-
-        <!-- EMPTY -->
-        @if(count($orders) == 0)
-
-            <div class="bg-[#172033]
-                        border border-gray-800
-                        rounded-[40px]
-                        p-16 text-center shadow-2xl">
-
-                <div class="text-8xl mb-6">
-                    📦
-                </div>
-
-                <h2 class="text-4xl font-black mb-4">
-                    No Orders Yet
-                </h2>
-
-                <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
-
-                    Looks like you haven’t placed any orders yet.
-                    Start exploring products and place your first order.
-
-                </p>
-
-                <a href="/products"
-                   class="bg-blue-500 hover:bg-blue-600
-                          px-10 py-5 rounded-2xl
-                          font-bold text-xl
-                          transition duration-300
-                          hover:scale-105 inline-block">
-
-                    Browse Products
-
-                </a>
-
-            </div>
-
-        @else
-
-            <!-- STATS -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-
-                <!-- TOTAL -->
-                <div class="bg-[#172033]
-                            border border-gray-800
-                            rounded-3xl p-8">
-
-                    <div class="flex items-center justify-between">
-
-                        <div>
-
-                            <p class="text-gray-400 mb-3">
-                                Total Orders
-                            </p>
-
-                            <h2 class="text-5xl font-black text-blue-400">
-
-                                {{ $orders->count() }}
-
-                            </h2>
-
-                        </div>
-
-                        <div class="text-6xl">
-                            📦
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- PENDING -->
-                <div class="bg-[#172033]
-                            border border-gray-800
-                            rounded-3xl p-8">
-
-                    <div class="flex items-center justify-between">
-
-                        <div>
-
-                            <p class="text-gray-400 mb-3">
-                                Pending
-                            </p>
-
-                            <h2 class="text-5xl font-black text-yellow-400">
-
-                                {{ $orders->where('status', 'pending')->count() }}
-
-                            </h2>
-
-                        </div>
-
-                        <div class="text-6xl">
-                            ⏳
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- DELIVERED -->
-                <div class="bg-[#172033]
-                            border border-gray-800
-                            rounded-3xl p-8">
-
-                    <div class="flex items-center justify-between">
-
-                        <div>
-
-                            <p class="text-gray-400 mb-3">
-                                Delivered
-                            </p>
-
-                            <h2 class="text-5xl font-black text-green-400">
-
-                                {{ $orders->where('status', 'delivered')->count() }}
-
-                            </h2>
-
-                        </div>
-
-                        <div class="text-6xl">
-                            ✅
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- ORDERS -->
-            <div class="space-y-8">
-
-                @foreach($orders as $order)
-
-                    <div class="bg-[#172033]
-                                border border-gray-800
-                                rounded-[35px]
-                                overflow-hidden shadow-2xl">
-
-                        <!-- TOP -->
-                        <div class="p-8 border-b border-gray-800">
-
-                            <div class="flex flex-col lg:flex-row
-                                        lg:items-center
-                                        lg:justify-between gap-6">
-
-                                <!-- LEFT -->
-                                <div>
-
-                                    <div class="flex items-center gap-4 mb-4">
-
-                                        <h2 class="text-3xl font-black">
-
-                                            Order #{{ $order->id }}
-
-                                        </h2>
-
-                                        <!-- STATUS -->
-                                        @if($order->status == 'pending')
-
-                                            <span class="bg-yellow-500/20
-                                                         text-yellow-400
-                                                         px-4 py-2 rounded-full
-                                                         text-sm font-bold">
-
-                                                Pending
-
-                                            </span>
-
-                                        @elseif($order->status == 'shipped')
-
-                                            <span class="bg-blue-500/20
-                                                         text-blue-400
-                                                         px-4 py-2 rounded-full
-                                                         text-sm font-bold">
-
-                                                Shipped
-
-                                            </span>
-
-                                        @elseif($order->status == 'delivered')
-
-                                            <span class="bg-green-500/20
-                                                         text-green-400
-                                                         px-4 py-2 rounded-full
-                                                         text-sm font-bold">
-
-                                                Delivered
-
-                                            </span>
-
-                                        @else
-
-                                            <span class="bg-gray-500/20
-                                                         text-gray-400
-                                                         px-4 py-2 rounded-full
-                                                         text-sm font-bold">
-
-                                                {{ ucfirst($order->status) }}
-
-                                            </span>
-
-                                        @endif
-
-                                    </div>
-
-                                    <div class="space-y-2 text-gray-400">
-
-                                        <p>
-                                            Order Date:
-                                            <span class="text-white font-semibold">
-
-                                                {{ $order->created_at->format('d M Y') }}
-
-                                            </span>
-                                        </p>
-
-                                        <p>
-                                            Total Amount:
-                                            <span class="text-blue-400 text-2xl font-black">
-
-                                                ₹{{ $order->total_price }}
-
-                                            </span>
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-                                <!-- TRACKING -->
-                                <div class="bg-[#111827]
-                                            border border-gray-800
-                                            rounded-3xl px-8 py-6">
-
-                                    <p class="text-gray-400 mb-2">
-                                        Estimated Delivery
-                                    </p>
-
-                                    <h3 class="text-2xl font-black">
-
-                                        3 - 5 Days
-
-                                    </h3>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- ITEMS -->
-                        <div class="p-8">
-
-                            <div class="flex items-center justify-between mb-8">
-
-                                <div>
-
-                                    <h3 class="text-2xl font-black mb-2">
-                                        Ordered Items
-                                    </h3>
-
-                                    <p class="text-gray-400">
-                                        Products included in this order.
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                            <div class="space-y-5">
-
-                                @foreach($order->items as $item)
-
-                                    <div class="bg-[#111827]
-                                                border border-gray-800
-                                                rounded-3xl p-6">
-
-                                        <div class="flex flex-col md:flex-row
-                                                    md:items-center
-                                                    md:justify-between gap-5">
-
-                                            <!-- PRODUCT -->
-                                            <div class="flex items-center gap-5">
-
-                                                <!-- ICON -->
-                                                <div class="w-24 h-24
-                                                            bg-[#1e293b]
-                                                            rounded-3xl
-                                                            flex items-center justify-center
-                                                            text-5xl">
-
-                                                    📦
-
-                                                </div>
-
-                                                <!-- INFO -->
-                                                <div>
-
-                                                    <h4 class="text-2xl font-bold mb-3">
-
-                                                        {{ $item->product->name }}
-
-                                                    </h4>
-
-                                                    <div class="flex gap-4 text-gray-400">
-
-                                                        <p>
-                                                            Qty:
-                                                            {{ $item->quantity }}
-                                                        </p>
-
-                                                        <p>
-                                                            Premium Product
-                                                        </p>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                            <!-- PRICE -->
-                                            <div>
-
-                                                <h3 class="text-4xl font-black text-blue-400">
-
-                                                    ₹{{ $item->price }}
-
-                                                </h3>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                @endforeach
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                @endforeach
-
-            </div>
-
-        @endif
-
+        <a href="/products" class="bg-brandAccent hover:bg-brandAccentHover text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-smooth btn-micro-anim shadow-lg shadow-brandAccent/10 w-fit">
+            Order New Items
+        </a>
     </div>
+
+    <!-- BODY -->
+    @if(count($orders) == 0)
+        <!-- Empty State -->
+        <div class="glassmorphism-luxury p-16 text-center border border-white/5 space-y-4 rounded-3xl shadow-2xl relative overflow-hidden">
+            <div class="text-6xl">📦</div>
+            <h2 class="text-xl font-bold text-white tracking-tight">No Active Journeys</h2>
+            <p class="text-xs text-textMuted max-w-sm mx-auto font-medium">No order tracking logs have been registered for this customer instance. Complete a checkout transaction to generate a shipping journey.</p>
+            <a href="/products" class="inline-block bg-brandAccent hover:bg-brandAccentHover text-white px-6 py-2.5 rounded-xl text-xs font-bold transition-smooth">
+                Inspect Storefront
+            </a>
+        </div>
+    @else
+        <!-- STATS CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 select-none">
+            <div class="glassmorphism-luxury p-6 border border-white/5 flex items-center justify-between rounded-3xl shadow-2xl specular-glass">
+                <div>
+                    <span class="text-[9px] text-textMuted uppercase font-bold block mb-1">Total Assigned Nodes</span>
+                    <span class="text-3xl font-black text-white tabular-nums">{{ $orders->count() }}</span>
+                </div>
+                <span class="text-3xl">📦</span>
+            </div>
+            <div class="glassmorphism-luxury p-6 border border-white/5 flex items-center justify-between rounded-3xl shadow-2xl specular-glass">
+                <div>
+                    <span class="text-[9px] text-textMuted uppercase font-bold block mb-1">In Processing</span>
+                    <span class="text-3xl font-black text-yellow-400 tabular-nums">{{ $orders->where('status', 'pending')->count() }}</span>
+                </div>
+                <span class="text-3xl">⏳</span>
+            </div>
+            <div class="glassmorphism-luxury p-6 border border-white/5 flex items-center justify-between rounded-3xl shadow-2xl specular-glass">
+                <div>
+                    <span class="text-[9px] text-textMuted uppercase font-bold block mb-1">Success Deliveries</span>
+                    <span class="text-3xl font-black text-brandGreen tabular-nums">{{ $orders->where('status', 'delivered')->count() }}</span>
+                </div>
+                <span class="text-3xl">✅</span>
+            </div>
+        </div>
+
+        <!-- ORDERS LIST -->
+        <div class="space-y-8 relative z-10">
+            @foreach($orders as $order)
+                <div class="glassmorphism-luxury border border-white/5 rounded-3xl shadow-2xl overflow-hidden specular-glass">
+                    
+                    <!-- Order Header -->
+                    <div class="p-6 bg-black/40 border-b border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="space-y-1.5">
+                            <div class="flex items-center gap-3">
+                                <h3 class="font-extrabold text-base text-white">Journey #{{ $order->id }}</h3>
+                                
+                                <!-- Status Pill -->
+                                @if($order->status == 'pending')
+                                    <span class="bg-yellow-500/10 border border-yellow-500/25 text-yellow-400 text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase">Pending</span>
+                                @elseif($order->status == 'approved')
+                                    <span class="bg-brandAccent/10 border border-brandAccent/25 text-brandAccent text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase">Approved</span>
+                                @elseif($order->status == 'processing')
+                                    <span class="bg-purple-500/10 border border-purple-500/25 text-purple-400 text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase">Processing</span>
+                                @elseif($order->status == 'shipped')
+                                    <span class="bg-blue-500/10 border border-blue-500/25 text-blue-400 text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase">Shipped</span>
+                                @elseif($order->status == 'delivered')
+                                    <span class="bg-brandGreen/10 border border-brandGreen/25 text-brandGreen text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase">Delivered</span>
+                                @elseif($order->status == 'cancelled')
+                                    <span class="bg-brandRed/10 border border-brandRed/25 text-brandRed text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase">Cancelled</span>
+                                @else
+                                    <span class="bg-brandRed/10 border border-brandRed/25 text-brandRed text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase">{{ $order->status }}</span>
+                                @endif
+                            </div>
+                            <p class="text-[10px] text-textMuted font-medium">Log Time: <span class="text-white font-bold">{{ $order->created_at->format('d M Y, h:i A') }}</span></p>
+                        </div>
+
+                        <!-- Right Info -->
+                        <div class="flex flex-wrap items-center gap-6">
+                            @if($order->status == 'pending')
+                                <a href="/order/cancel/{{ $order->id }}" class="bg-brandRed/10 hover:bg-brandRed/20 text-brandRed hover:text-red-300 px-4 py-2 rounded-xl text-xs font-bold transition-smooth btn-micro-anim border border-brandRed/25" onclick="return confirm('Are you sure you want to cancel this order?')">
+                                    Cancel Journey
+                                </a>
+                            @endif
+                            <div>
+                                <span class="text-[9px] text-textMuted uppercase font-bold block">Estimated Fulfillment</span>
+                                <span class="text-xs font-bold text-white">3 - 5 Business Days</span>
+                            </div>
+                            <div class="w-px h-6 bg-white/5 hidden md:block"></div>
+                            <div>
+                                <span class="text-[9px] text-textMuted uppercase font-bold block">Fulfillment Cost</span>
+                                <span class="text-base font-black text-brandGreen tabular-nums">₹{{ number_format($order->total_price, 2) }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Journey Timeline (Next-Gen visual progress mapping) -->
+                    @if($order->status != 'cancelled' && $order->status != 'rejected')
+                        <div class="px-6 pt-6 pb-2">
+                            <span class="text-[9px] font-bold text-textMuted uppercase tracking-wider block mb-4">Journey Timeline Status</span>
+                            
+                            <div class="relative flex items-center justify-between w-full max-w-2xl mx-auto py-2">
+                                <!-- Background Line -->
+                                <div class="absolute left-0 right-0 h-0.5 bg-white/5 z-0"></div>
+                                
+                                <!-- Active line overlay -->
+                                @php
+                                    $step = 1;
+                                    if ($order->status == 'approved') $step = 2;
+                                    if ($order->status == 'processing') $step = 3;
+                                    if ($order->status == 'shipped') $step = 4;
+                                    if ($order->status == 'delivered') $step = 5;
+                                    $percent = (($step - 1) / 4) * 100;
+                                @endphp
+                                <div class="absolute left-0 h-0.5 bg-gradient-to-r from-brandAccent to-brandGreen z-0 transition-smooth" style="width: {{ $percent }}%"></div>
+
+                                <!-- Step Nodes -->
+                                <div class="relative z-10 flex flex-col items-center">
+                                    <div class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black transition-smooth border {{ $step >= 1 ? 'bg-brandAccent text-white border-brandAccent shadow-lg shadow-brandAccent/25' : 'bg-bgDarker text-textMuted border-white/5' }}">
+                                        1
+                                    </div>
+                                    <span class="text-[9px] font-bold uppercase mt-1.5 {{ $step >= 1 ? 'text-white' : 'text-textMuted' }}">Pending</span>
+                                </div>
+
+                                <div class="relative z-10 flex flex-col items-center">
+                                    <div class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black transition-smooth border {{ $step >= 2 ? 'bg-brandAccent text-white border-brandAccent shadow-lg shadow-brandAccent/25' : 'bg-bgDarker text-textMuted border-white/5' }}">
+                                        2
+                                    </div>
+                                    <span class="text-[9px] font-bold uppercase mt-1.5 {{ $step >= 2 ? 'text-white' : 'text-textMuted' }}">Approved</span>
+                                </div>
+
+                                <div class="relative z-10 flex flex-col items-center">
+                                    <div class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black transition-smooth border {{ $step >= 3 ? 'bg-brandAccent text-white border-brandAccent shadow-lg shadow-brandAccent/25' : 'bg-bgDarker text-textMuted border-white/5' }}">
+                                        3
+                                    </div>
+                                    <span class="text-[9px] font-bold uppercase mt-1.5 {{ $step >= 3 ? 'text-white' : 'text-textMuted' }}">Processing</span>
+                                </div>
+
+                                <div class="relative z-10 flex flex-col items-center">
+                                    <div class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black transition-smooth border {{ $step >= 4 ? 'bg-brandAccent text-white border-brandAccent shadow-lg shadow-brandAccent/25' : 'bg-bgDarker text-textMuted border-white/5' }}">
+                                        4
+                                    </div>
+                                    <span class="text-[9px] font-bold uppercase mt-1.5 {{ $step >= 4 ? 'text-white' : 'text-textMuted' }}">Shipped</span>
+                                </div>
+
+                                <div class="relative z-10 flex flex-col items-center">
+                                    <div class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black transition-smooth border {{ $step >= 5 ? 'bg-brandGreen text-white border-brandGreen shadow-lg shadow-brandGreen/25' : 'bg-bgDarker text-textMuted border-white/5' }}">
+                                        ✓
+                                    </div>
+                                    <span class="text-[9px] font-bold uppercase mt-1.5 {{ $step >= 5 ? 'text-white' : 'text-textMuted' }}">Delivered</span>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    <!-- Order Items -->
+                    <div class="p-6 space-y-4">
+                        <span class="text-[9px] font-bold text-textMuted uppercase tracking-wider block">Assigned Dispatch Units</span>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            @foreach($order->items as $item)
+                                <div class="bg-black/20 border border-white/5 rounded-2xl p-4 flex items-center justify-between gap-4 specular-glass">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 bg-black/40 rounded-xl border border-white/5 flex items-center justify-center text-2xl select-none shrink-0">
+                                            @if($item->product && $item->product->image)
+                                                <img src="/products/{{ $item->product->image }}" alt="" class="w-full h-full object-cover rounded-xl">
+                                            @else
+                                                📦
+                                            @endif
+                                        </div>
+                                        <div>
+                                            <h5 class="font-extrabold text-xs text-white">{{ $item->product->name ?? 'Deleted Listing' }}</h5>
+                                            <p class="text-[9px] text-textMuted font-bold uppercase">Qty: {{ $item->quantity }} • SKU: {{ $item->product->sku ?? 'N/A' }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-xs font-bold text-brandAccent tabular-nums">₹{{ number_format($item->price, 2) }}</span>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <!-- Customer Shipping logistics tracker -->
+                    <div class="px-6 pb-6 pt-4 border-t border-white/5 bg-black/10 select-none">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs">
+                            <div class="space-y-1">
+                                <span class="text-[9px] font-bold text-textMuted uppercase tracking-wider block">Logistics Partner & Tracking</span>
+                                <p class="text-white font-bold">✈️ BlueDart Premium • <span class="font-mono text-brandAccent">BB-{{ 492040 + $order->id }}-IN</span></p>
+                            </div>
+                            <div class="space-y-1 text-left sm:text-right">
+                                <span class="text-[9px] font-bold text-textMuted uppercase tracking-wider block">Active Status Hub Logs</span>
+                                @if($order->status == 'pending')
+                                    <p class="text-yellow-400 font-bold text-xs">Awaiting dispatch node validation</p>
+                                @elseif($order->status == 'approved')
+                                    <p class="text-blue-400 font-bold text-xs">Route initialized at Origin hub</p>
+                                @elseif($order->status == 'processing')
+                                    <p class="text-blue-400 font-bold text-xs">Packaging and labeling finalized</p>
+                                @elseif($order->status == 'shipped')
+                                    <p class="text-brandGreen font-bold text-xs">In Transit (Departed Sort Facility Bengaluru)</p>
+                                @elseif($order->status == 'delivered')
+                                    <p class="text-brandGreen font-bold text-xs">Delivered successfully (Signed by Consignee)</p>
+                                @else
+                                    <p class="text-textMuted font-bold text-xs uppercase">{{ $order->status }}</p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            @endforeach
+        </div>
+    @endif
 
 </div>
 
