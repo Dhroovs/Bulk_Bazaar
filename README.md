@@ -120,6 +120,14 @@ Bulk Bazaar has been completely overhauled from a basic storefront into a **Comm
 
 ---
 
+### ☀️ Dynamic Light Mode Interface (Vendor Dashboard)
+> Clean, high-contrast light theme with optimized readability for merchant management.
+<p align="center">
+  <img src="screenshots/vendor_dashboard_light.png" width="900" alt="Vendor Dashboard Light Mode" />
+</p>
+
+---
+
 ### 👤 Customer Account Panel
 > Customer control center showing quick profile configurations, recent orders, and real-time dashboard notifications.
 <p align="center">
