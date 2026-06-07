@@ -1,143 +1,207 @@
-# 🛒 Bulk Bazaar - Commerce Operating System
+# 🛒 Bulk Bazaar — Premium Commerce Operating System
 
 <div align="center">
 
-### Premium Enterprise Multi-Vendor E-Commerce Operating System
+### 🌟 Enterprise-Grade Multi-Vendor E-Commerce Operating System 🌟
 
-*A state-of-the-art full-stack commerce center modeled after Stripe, Linear, and luxury fintech platforms.*
+*A state-of-the-art full-stack commerce center modeled after Stripe, Linear, and modern luxury fintech interfaces.*
 
-![Laravel](https://img.shields.io/badge/Laravel-10-red?style=for-the-badge&logo=laravel)
-![PHP](https://img.shields.io/badge/PHP-8.2-blue?style=for-the-badge&logo=php)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-cyan?style=for-the-badge&logo=tailwindcss)
-![MySQL](https://img.shields.io/badge/MySQL-Database-orange?style=for-the-badge&logo=mysql)
-![Pest](https://img.shields.io/badge/Pest-Testing-green?style=for-the-badge&logo=php)
+[![Laravel](https://img.shields.io/badge/Laravel-10.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com)
+[![Pest](https://img.shields.io/badge/Pest-Testing-4A154B?style=for-the-badge&logo=php&logoColor=white)](https://pestphp.com)
 
 </div>
 
 ---
 
-## ✨ Overview
+## ✨ Overview & Reimagined Aesthetics
 
-Bulk Bazaar has been completely reimagined from a generic admin panel into a **Commerce Operating System** incorporating advanced architectural layers. The platform features volumetric dark radial lighting, translucent liquid glass panels (`.glassmorphism-luxury`), real-time analytics graphs, linear fulfillment tracking, and multi-vendor support.
+Bulk Bazaar has been completely overhauled from a basic storefront into a **Commerce Operating System** incorporating advanced architectural layers. The user experience is designed with high-end, developer-first aesthetics:
+
+*   🌌 **Volumetric Glow Elements:** Translucent liquid glass panels (`.glassmorphism-luxury`) backdropped by dark-mode radial gradients.
+*   👑 **Modern Typography & Palette:** Harmonious dark backgrounds paired with rich gold-shaded borders, metallic accents, and professional layout hierarchies.
+*   ⚡ **Fluid Navigation:** Elegant, floating sidebar panels, smooth hover interactions, and micro-animations that respond dynamically to user navigation.
 
 ---
 
 ## 🚀 Key Modules & Architecture
 
-### 1. Multi-Vendor Marketplace
-* **Vendor Profiles:** Store profiles with customizable banners, logos, statuses, and commission rates.
-* **Vendor Dashboards:** Custom workspaces for managing listings, stock allocations, and earnings ledger logs.
-* **Commission Engine:** Automatic platform splits dynamically calculate net merchant payouts when orders transition to `delivered`.
+### 🏪 1. Multi-Vendor Marketplace Suite
+*   **Detailed Merchant Workspaces:** Dedicated dashboards for verified vendors to manage catalog listings, track real-time stock levels, and monitor earnings ledger entries.
+*   **Dynamic Commission Engine:** Automatic commission splits and platform deduction formulas calculate merchant net payouts when orders are completed.
+*   **Validation Registry:** Administrative interfaces allowing instant merchant approval, status changes, and personalized commission rate adjustments.
 
-### 2. Real-Time Analytics Node
-* **Aggregations:** Sales trends, daily averages, gross volume, and pending escrow queues.
-* **Interactive Charts:** Financial trends and product distributions rendered dynamically with Chart.js.
-* **Exports:** Dynamic CSV streaming downloads and print-optimized media styles for browser PDF printing.
+### 📊 2. Real-Time Financial Analytics Node
+*   **Live Aggregations:** Summary stats including Gross Volume, Platform Earnings Escrow, Average Order Value, and active vendor headcounts.
+*   **Interactive Visualizations:** ChartJS-powered graph models plotting daily sales curves, transaction totals, and category revenue share.
+*   **Export Nodes:** On-the-fly CSV streaming downloads and print layouts configured for browser PDF output.
 
-### 3. Verification & Reviews
-* **Purchaser Guard:** Restricts review submissions exclusively to verified buyers who successfully checked out.
-* **Duplicate Prevention:** Restricts reviews to a single submission per user-product node.
-* **Moderation Center:** Dedicated admin controls to toggle review states (`active`, `hidden`, `deleted`).
+### 🛡️ 3. Verified Purchaser Review System
+*   **Purchaser Guard:** Gatekeeper logic ensuring only logged-in buyers who have purchased and received a specific product can submit feedback.
+*   **Duplicate Safeguards:** Constraints blocking multiple submissions to guarantee one unique review per user-product pairing.
+*   **Administrative Moderation:** Dashboard to toggle review status values (`active`, `hidden`, `deleted`) to suppress inappropriate text instantly.
 
-### 4. Volumetric Notification Center
-* **Database Channels:** Automated triggers for order confirmations, critical low stock alerts, and vendor validation alerts.
-* **Header Hub:** An Alpine.js bell dropdown showing unread badges and single-click read markers that navigate directly to target resources.
-
----
-
-## 🧰 Technical Specifications
-
-| Component | Technology | Role |
-|---|---|---|
-| Core Engine | **Laravel 10** | MVC Backend Architecture |
-| Language | **PHP 8.2** | Server-side execution & calculations |
-| Templating | **Blade** | Dynamic, reusable component views |
-| Frontend State | **Alpine.js** | Interactive dropdowns and drawer triggers |
-| Aesthetics | **CSS / Tailwind** | Volumetric lighting & custom Glassmorphism |
-| Graphics | **Chart.js** | Volumetric finance trends & distributions |
-| Database | **MySQL** | Schema migrations and constraints |
-| Unit Checks | **Pest Suite** | Automated feature & regression tests |
+### 🔔 4. Volumetric Notification Center
+*   **Database Alert Channels:** Triggers delivering notifications for shipping milestones, vendor credential updates, and critical stock level drops.
+*   **Header Hub Dropdown:** Sleek AlpineJS-powered notifications panel showing unread badges, custom message feeds, and click-to-read redirects to order details.
 
 ---
 
-## 📸 Volumetric System Previews
+## 🗂️ Technical Blueprint & Models
+
+| Component | Class / Folder | Role |
+| :--- | :--- | :--- |
+| **Core Engine** | `Laravel 10.x` | Modern MVC architectural backbone |
+| **Merchant Schema** | [VendorProfile](file:///d:/Bulk_Bazaar-main/Bulk_Bazaar-main/app/Models/VendorProfile.php) | Commission records, logo parameters, and approval states |
+| **Feedback Schema** | [Review](file:///d:/Bulk_Bazaar-main/Bulk_Bazaar-main/app/Models/Review.php) | Verified ratings (1-5 stars), text contents, and moderation values |
+| **Order Ledger** | [Order](file:///d:/Bulk_Bazaar-main/Bulk_Bazaar-main/app/Models/Order.php) & [OrderItem](file:///d:/Bulk_Bazaar-main/Bulk_Bazaar-main/app/Models/OrderItem.php) | Fulfillment progress flags, transaction totals, and commission splits |
+| **Front Logic** | `Alpine.js` & `Vite` | Asynchronous toggles, notifications bells, and modal control |
+| **Test Suite** | `Pest Unit Checks` | 27 automated feature and security validation checks |
+
+---
+
+## 📸 Premium Interface Showcase
 
 ### 🏠 Storefront Homepage
-*High-end landing page highlighting categorized catalog entries.*
-![Homepage](screenshots/home.png)
+> Elegant dark theme landing page showcasing product categories, active promotions, and custom glass cards.
+<p align="center">
+  <img src="screenshots/home.png" width="900" alt="Homepage" />
+</p>
 
 ---
 
-### 🛍️ Product Catalog
-*Interactive products view featuring price sorting, category matching, and spotlights.*
-![Products Catalog](screenshots/products.png)
+### 🔍 Product Details & Verified Reviews
+> Detail views featuring ratings, interactive verified purchaser reviews, and instant validation checks.
+<p align="center">
+  <img src="screenshots/product_detail.png" width="900" alt="Product Details" />
+</p>
 
 ---
 
-### 📊 Admin Command Center
-*Volumetric dark dashboard summarizing catalogs, users, logs, and financial flows.*
-![Admin Command Center](screenshots/admin_dashboard.png)
+### 📊 Admin Command Center (Stripe-Inspired)
+> Real-time sales statistics, escrow levels, inventory flags, and recent customer actions.
+<p align="center">
+  <img src="screenshots/admin_dashboard.png" width="900" alt="Admin Dashboard" />
+</p>
 
 ---
 
-### 📂 Classification Registries
-*Manage schema classifications and monitor revenue yields by category.*
-![Categories Node](screenshots/admin_categories.png)
+### 📈 Financial Analytics & Visual Trends
+> Live Chart.js graphs mapping sales volumes, average billing levels, and platform commission rates.
+<p align="center">
+  <img src="screenshots/admin_analytics.png" width="900" alt="Admin Financial Analytics" />
+</p>
 
 ---
 
-### 📦 Fulfillment Timelines
-*Manage shipping status transitions and monitor BlueDart tracking airbills.*
-![Fulfillment Ledger](screenshots/admin_orders.png)
+### 🤝 Commission Configurator & Vendor Registry
+> Registry panel to toggle vendor status values, update individual commission rates, and track total net platform splits.
+<p align="center">
+  <img src="screenshots/admin_vendors.png" width="900" alt="Admin Vendor Registry" />
+</p>
 
 ---
 
-### ✈️ Linear Shipment Tracker
-*Visual handover milestones tracking dispatched parcels.*
-![Fulfillment Progress Tracker](screenshots/customer_tracker.png)
+### 💬 Review Moderation Portal
+> Comprehensive feed control showing reviewer credentials, rating metrics, and direct action to toggle review states.
+<p align="center">
+  <img src="screenshots/admin_reviews.png" width="900" alt="Admin Review Moderation" />
+</p>
 
 ---
 
-## ⚡ Installation & Local Setup
-
-### 1. Clone & Initialize
-```bash
-git clone https://github.com/Dhroovs/Bulk_Bazaar.git
-cd Bulk_Bazaar
-composer install
-npm install
-```
-
-### 2. Environment Configuration
-Copy `.env.example` to `.env` and set up your MySQL credentials:
-```bash
-cp .env.example .env
-php artisan key:generate
-```
-
-### 3. Migrations & Seeders
-Configure the database structures and load initial classifications, products, and default credentials:
-```bash
-php artisan migrate --seed
-```
-
-### 4. Build Assets & Boot Server
-Compile the tailwind theme classes and start the local web host:
-```bash
-npm run dev
-php artisan serve
-```
+### 💼 Vendor Operations Dashboard
+> Tailored control center for merchants to track inventory volume, view individual sales trends, and verify pending payouts.
+<p align="center">
+  <img src="screenshots/vendor_dashboard.png" width="900" alt="Vendor Dashboard" />
+</p>
 
 ---
 
-## 🔬 Test Executions
-To verify backend isolation and check regressions:
+### 👤 Customer Account Panel
+> Customer control center showing quick profile configurations, recent orders, and real-time dashboard notifications.
+<p align="center">
+  <img src="screenshots/customer_dashboard.png" width="900" alt="Customer Dashboard" />
+</p>
+
+---
+
+### 📦 Customer Order Center & Logistics
+> Interactive customer receipts displaying purchased item nodes and detailed delivery status trails.
+<p align="center">
+  <img src="screenshots/customer_orders.png" width="900" alt="Customer Orders Panel" />
+</p>
+
+---
+
+## ⚡ Setup & Local Development
+
+### 📋 Prerequisites
+*   **PHP:** >= 8.2
+*   **Composer:** Dependency Manager for PHP
+*   **Node.js & NPM:** Asset pipeline builder
+*   **MySQL Server:** Data storage system
+
+### 🛠️ Execution Guide
+1.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/Dhroovs/Bulk_Bazaar.git
+    cd Bulk_Bazaar
+    ```
+2.  **Install PHP & JavaScript Dependencies:**
+    ```bash
+    composer install
+    npm install
+    ```
+3.  **Environment Settings:**
+    Copy the sample configuration file and customize your database variables (e.g., `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`):
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+4.  **Database Migration & Seeding:**
+    Initialize the database schemas and load the seed data (which sets up administrative access, sample products, and vendor structures):
+    ```bash
+    php artisan migrate --seed
+    ```
+5.  **Build Assets & Launch Server:**
+    Run the Vite development server and launch the Laravel local server:
+    ```bash
+    npm run dev
+    # (In a separate terminal)
+    php artisan serve
+    ```
+
+---
+
+## 🔬 Testing & Integrity Checks
+
+Bulk Bazaar includes a rigorous test suite using **Pest** to verify order mathematics, commission ratios, review gating conditions, and security configurations:
+
 ```bash
 vendor/bin/pest
 ```
-*Result: 27 feature tests verified passing successfully.*
+*   **Results:** `27 feature tests verified passing successfully.`
 
 ---
 
-## 👨‍💻 Developer
-* **Dhroov Singh** - *Enterprise Commerce Application Developer*
+## 🛠️ Frequently Asked Questions (FAQ)
+
+### ❓ Why were some screenshot assets updated?
+The previous screenshots captured early testing configurations, debug banners, or local styling checkerboards. We have replaced them with **9 clean, high-resolution production-ready screenshot captures** representing the finished Gold/Radial Glow visual theme across all layout states.
+
+### ❓ What is the default commission rate for merchants?
+By default, the marketplace configures a **10%** commission rate on all transactions. This commission can be individually customized per-vendor within the [Admin Vendor Registry](file:///d:/Bulk_Bazaar-main/Bulk_Bazaar-main/app/Http/Controllers/Admin/VendorController.php).
+
+---
+
+## 👨‍💻 Primary Developer
+*   **Dhroov Singh** — *Enterprise Commerce Application Developer*
+
+<div align="center">
+
+### ⭐ If you love the dark/gold fintech design of Bulk Bazaar, feel free to give it a star! ⭐
+
+</div>
