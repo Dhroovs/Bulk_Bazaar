@@ -152,7 +152,7 @@ Bulk Bazaar has been completely overhauled from a basic storefront into a **Comm
 *   **Node.js & NPM:** Asset pipeline builder
 *   **MySQL Server:** Data storage system
 
-### 🛠️ Execution Guide
+### 🛠️ Execution Guide:
 1.  **Clone the Repository:**
     ```bash
     git clone https://github.com/Dhroovs/Bulk_Bazaar.git
